@@ -11,6 +11,21 @@ let addItem = function (element = {one: "vacio",two: "vacio", tree: 3}) {
     }
     let wrapper = document.querySelector('#wrapper')
     wrapper.innerHTML += item(element)
+
+    
+    // let para = document.createElement("input");
+    // let node = document.createTextNode("Tutorix is the best e-learning platform");
+    // para.appendChild(node);
+    // let el = document.getElementById("wrapper");
+    // el.appendChild(para);    
+    
+
+    // let aCopiar = document.querySelector('#test')
+    // const clone = aCopiar.cloneNode(true)
+    // document.querySelector('#wrapper').appendChild(clone)
+
+    // let wrapper = document.querySelector('#model')
+    // wrapper.innerHTML += item(element)
 }
 
 
@@ -59,17 +74,22 @@ let item = function (element) {
     return myItem
 }
 
+let modelHtml = function(){
+    addItem()
+}
+
 let deleteItem = function(element){
     //remove from server and html
     if (element.parentElement.parentElement.id === 'undefined') {
         console.log('no esta definido, borrar del html')
+        element.parentElement.parentElement.remove()
         //remove from html
     }else{
         //remove from server
         console.log('borrar del server')
     }
     console.log(element.parentElement.parentElement.id)
-    // element.parentElement.parentElement.remove()
+    
 }
 
 let total = function () {
