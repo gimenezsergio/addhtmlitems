@@ -50,10 +50,10 @@ let item = function (element) {
     let classesItemCol = 'itemCol'
     let myItem = /*html*/`
     <div class="${classesItem}" id='${element.id}'>
-            <div class="${classesItemCol}">${element.one}</div>
+            <div class="${classesItemCol}">${element.one} <input> </div>
             <div class="${classesItemCol}">${element.two}</div>
             <div class="${classesItemCol} subtotal">${element.tree}</div>
-            <div> <button onclick='deleteItem(this)'>Borrar</button> </div>
+            <div> <button onclick='deleteItem(this)' class='deleteItem'>Borrar</button> </div>
         </div>
     `
     return myItem
@@ -91,9 +91,31 @@ let viewEditNew = function(){
       if (parseInt(urlParams.get("id"))) {
           console.log('Hay id. Editar. ver')
           loadJson()
+          readOnlyInput()
+          document.querySelector('#addItem').setAttribute('disabled','true')
       }else{
           console.log('No hay id. Nuevo')
       }
 }
+
+let readOnlyInput = function() {
+    
+    const buttons = document.querySelectorAll(".deleteItem");
+    buttons.forEach((element) => {
+      element.setAttribute("readonly", "true");
+      element.setAttribute("disabled", "true");
+    });
+
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((element) => {
+      element.setAttribute("readonly", "true");
+      element.setAttribute("disabled", "true");
+    });
+
+    const selects = document.querySelectorAll(".form-select");
+    selects.forEach((element) => {
+      element.setAttribute("readonly", "true");
+    });
+  }
 
 viewEditNew()
