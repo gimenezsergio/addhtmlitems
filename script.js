@@ -38,6 +38,33 @@ let loadJson = function () {
     
 }
 
+let selectHtml = function () {
+    let data = [
+        {
+        price: 200,
+        code: 'COD1',
+        nombre: 'Tamaño de poro'
+      },
+      {
+        price: 100,
+        code: 'COD2',
+        nombre: 'Ruptura de papel'
+      },
+      {
+        price: 140,
+        code: 'COD3',
+        nombre: 'Permeabilidad'
+      },
+      {
+        price: 540,
+        code: 'COD4',
+        nombre: 'Performance de filtro de aire'
+      }
+    ]
+
+    return data
+}
+
 let fakeData = function () {
     let dataList = [{
         id:1,
@@ -66,7 +93,17 @@ let item = function (element) {
     let myItem = /*html*/`
     <div class="${classesItem}" id='${element.id}'>
             <div class="${classesItemCol}">${element.one} <input> </div>
-            <div class="${classesItemCol}">${element.two}</div>
+            <div class="${classesItemCol}">${element.two}
+            <select class="form-select" name="" id="" onchange="changeSelect(this)"> 
+            <option value="" selected disabled>Elegir</option> 
+            ${selectHtml().map(item =>
+                `
+                                    <option price="${item.price}" code="${item.code}" value="">${item.nombre}</option>               
+                            `
+            
+              ).join('')}  
+              </select>
+              </div>
             <div class="${classesItemCol} subtotal">${element.tree}</div>
             <div> <button onclick='deleteItem(this)' class='deleteItem'>Borrar</button> </div>
         </div>
